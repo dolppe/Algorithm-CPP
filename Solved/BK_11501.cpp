@@ -31,28 +31,19 @@ int main()
 			cin >> Day[i];
 		}
 		long long money = 0;
-		int stock = 0;
-
-		int maxIdx = max_element(Day, Day + N) - Day;
-		int maxValue = Day[maxIdx];
-
-		for (int i = 0; i < N; i++)
+		int current = Day[N - 1];
+		for (int i = N - 1; i >= 0; i--)
 		{
-			if (i < maxIdx)
+			if (current > Day[i])
 			{
-				money -= Day[i];
-				stock++;
+				money += current - Day[i];
 			}
-			else if (i == maxIdx)
+			else
 			{
-				money += stock * Day[i];
-				stock = 0;
-
-				maxIdx = max_element(Day + i + 1, Day + N) - Day;
-				maxValue = Day[maxIdx];
+				current = Day[i];
 			}
-
 		}
+
 
 		cout << money << "\n";
 
